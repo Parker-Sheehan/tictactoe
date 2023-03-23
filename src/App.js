@@ -1,12 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-import Square from './Square'
+import { useState } from "react";
+import "./App.css";
+import Square from "./components/Square";
 
 function App() {
-  const str = {name:"danny", age:34}
+  const [squares, setSquares] = useState(["", "", "", "", "", "", "", "", ""]);
+  const [player, setPlayer] = useState(true);
+
+  const setSquaresHandler = (selectedSquares) => {
+    console.log(squares)
+    setSquares(selectedSquares);
+    console.log(squares)
+  };
+
+  const setPlayerHandler = (selectedPlayer) => {
+    setPlayer(selectedPlayer);
+  };
+
+  const resetHandler = () => {
+    setSquares(["", "", "", "", "", "", "", "", ""])
+    setPlayer(true)
+  }
+
   return (
     <div className="App">
-      <Square propsVar={str}/>
+      <div className="container">
+        {squares.map((val, index) => {
+          return(
+          <Square
+            squareValue={val}
+            index={index}
+            squares={squares}
+            player={player}
+            setSquares={setSquaresHandler}
+            setPlayer={setPlayerHandler}
+          />
+          );
+        })}
+      </div>
+      <button onClick={resetHandler}>Reset!</button>
     </div>
   );
 }
