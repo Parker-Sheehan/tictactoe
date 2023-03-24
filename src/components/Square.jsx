@@ -21,6 +21,8 @@ const square = (props) => {
     //     }
     // }
 
+
+
     const clickHandler = () => {
         if (!props.squareValue) {
             if(props.player){
